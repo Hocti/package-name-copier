@@ -3,6 +3,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
+import { setTimeout } from 'timers';
 
 function getPackageName(packageJsonPath: string){
 	if (fs.existsSync(packageJsonPath)) {
@@ -47,7 +48,7 @@ function findNearestPackageJson(filePath: string): string | undefined {
 		if(name){
 			return name;
 		}
-		if(vscode.workspace.workspaceFolders?.some(folder => folder.uri.fsPath === currentDir)){
+		if(vscode.workspace.workspaceFolders?.some((folder: vscode.WorkspaceFolder) => folder.uri.fsPath === currentDir)){
 			break;
 		}
 		currentDir = path.dirname(currentDir);
@@ -79,7 +80,7 @@ export function activate(context: vscode.ExtensionContext) {
 		if (packageName) {
 			vscode.env.clipboard.writeText(packageName).then(() => {
 				vscode.window.showInformationMessage(`Copied package name: ${packageName}`);
-			}, (error) => {
+			}, (error: any) => {
 				vscode.window.showErrorMessage(`Failed to copy package name: ${error}`);
 			});
 		} else {

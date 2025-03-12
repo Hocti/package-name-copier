@@ -12,7 +12,7 @@ Package Name Copier is a lightweight VS Code extension designed for monorepo pro
 
 Check out the extension in action:
 
-![Demo](demo.png)
+![Demo](https://raw.githubusercontent.com/Hocti/package-name-copier/main/demo.png)
 
 ## Installation
 
